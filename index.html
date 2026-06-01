@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="রসুলপুর ইসলাম নিসা মহিলা মাদ্রাসা ম্যানেজমেন্ট সিস্টেম">
+    <meta name="theme-color" content="#1a5276">
+    <title>রসুলপুর ইসলাম নিসা মহিলা মাদ্রাসা</title>
+
+    <!-- Google Fonts - Bengali Support -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&family=Noto+Serif+Bengali:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <!-- Custom Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ============================================================
+     LOADING SCREEN
+============================================================ -->
+<div id="loadingScreen" class="loading-screen">
+    <div class="loading-content">
+        <div class="loading-logo">
+            <i class="fas fa-mosque"></i>
+        </div>
+        <h2 class="loading-title">রসুলপুর ইসলাম নিসা</h2>
+        <p class="loading-subtitle">মহিলা মাদ্রাসা</p>
+        <div class="loading-spinner">
+            <div class="spinner-ring"></div>
+        </div>
+    </div>
+</div>
+
+<!-- ============================================================
+     LOGIN PAGE
+============================================================ -->
+<div id="loginPage" class="login-page hidden">
+
+    <!-- Decorative Background -->
+    <div class="login-bg">
+        <div class="login-bg-pattern"></div>
+        <div class="login-bg-overlay"></div>
+    </div>
+
+    <div class="login-wrapper">
+
+        <!-- Left Panel - Branding -->
+        <div class="login-branding">
+            <div class="branding-icon">
+                <i class="fas fa-mosque"></i>
+            </div>
+            <h1 class="branding-title">রসুলপুর ইসলাম নিসা<br>মহিলা মাদ্রাসা</h1>
+            <p class="branding-tagline">ইলম ও আমলের আলোয় আলোকিত জীবন গড়ি</p>
+            <div class="branding-divider"></div>
+            <div class="branding-features">
+                <div class="feature-item">
+                    <i class="fas fa-user-graduate"></i>
+                    <span>ছাত্রী ব্যবস্থাপনা</span>
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-chalkboard-teacher"></i>
+                    <span>শিক্ষক ব্যবস্থাপনা</span>
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-calendar-alt"></i>
+                    <span>রুটিন ব্যবস্থাপনা</span>
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-bullhorn"></i>
+                    <span>নোটিশ বোর্ড</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Panel - Login Form -->
+        <div class="login-card">
+            <div class="login-card-header">
+                <div class="login-card-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <h2>অ্যাডমিন লগইন</h2>
+                <p>আপনার অ্যাকাউন্টে প্রবেশ করুন</p>
+            </div>
+
+            <!-- Error Alert -->
+            <div id="loginError" class="alert alert-error hidden">
+                <i class="fas fa-exclamation-circle"></i>
+                <span id="loginErrorMsg">লগইন ব্যর্থ হয়েছে</span>
+            </div>
+
+            <!-- Success Alert -->
+            <div id="loginSuccess" class="alert alert-success hidden">
+                <i class="fas fa-check-circle"></i>
+                <span id="loginSuccessMsg">সফলভাবে সম্পন্ন হয়েছে</span>
+            </div>
+
+            <div class="login-form">
+                <!-- Email -->
+                <div class="form-group">
+                    <label class="form-label">
+                        <i class="fas fa-envelope"></i> ইমেইল ঠিকানা
+                    </label>
+                    <input
+                        type="email"
+                        id="loginEmail"
+                        class="form-input"
+                        placeholder="admin@madrasa.com"
+                        autocomplete="email"
+                    >
+                </div>
+
+                <!-- Password -->
+                <div class="form-group">
+                    <label class="form-label">
+                        <i class="fas fa-lock"></i> পাসওয়ার্ড
+                    </label>
+                    <div class="input-group">
+                        <input
+                            type="password"
+                            id="loginPassword"
+                            class="form-input"
+                            placeholder="••••••••"
+                            autocomplete="current-password"
+                        >
+                        <button class="input-icon-btn" type="button" onclick="togglePassword('loginPassword', this)" tabindex="-1">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Forgot Password -->
+                <div class="forgot-link">
+                    <a href="#" onclick="forgotPassword(); return false;">পাসওয়ার্ড ভুলে গেছেন?</a>
+                </div>
+
+                <!-- Email Login Button -->
+                <button id="emailLoginBtn" class="btn btn-primary btn-full" onclick="loginWithEmail()">
+                    <span class="btn-text">
+                        <i class="fas fa-sign-in-alt"></i> লগইন করুন
+                    </span>
+                    <span class="btn-loader hidden">
+                        <i class="fas fa-circle-notch fa-spin"></i> অপেক্ষা করুন...
+                    </span>
+                </button>
+
+                <!-- Divider -->
+                <div class="or-divider">
+                    <span>অথবা</span>
+                </div>
+
+                <!-- Google Login -->
+                <button id="googleLoginBtn" class="btn btn-google btn-full" onclick="loginWithGoogle()">
+                    <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Google" class="google-icon">
+                    <span>Google দিয়ে লগইন করুন</span>
+                </button>
+            </div>
+
+            <div class="login-card-footer">
+                <p>© ২০২৫ রসুলপুর ইসলাম নিসা মহিলা মাদ্রাসা</p>
+                <p>সর্বস্বত্ব সংরক্ষিত</p>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- ============================================================
+     MAIN APPLICATION
+============================================================ -->
+<div id="mainApp" class="main-app hidden">
+
+    <!-- ===== SIDEBAR ===== -->
+    <aside id="sidebar" class="sidebar">
+
+        <!-- Sidebar Header -->
+        <div class="sidebar-header">
+            <div class="sidebar-logo-wrap">
+                <div class="sidebar-logo">
+                    <i class="fas fa-mosque"></i>
+                </div>
+                <div class="sidebar-brand">
+                    <h3>রসুলপুর মাদ্রাসা</h3>
+                    <span>ম্যানেজমেন্ট সিস্টেম</span>
+                </div>
+            </div>
+            <button class="sidebar-toggle-btn" onclick="closeSidebar()" aria-label="সাইডবার বন্ধ করুন">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+        </div>
+
+        <!-- User Profile -->
+        <div class="sidebar-profile">
+            <div class="profile-avatar" id="sidebarAvatar">
+                <i class="fas fa-user-shield"></i>
+            </div>
+            <div class="profile-info">
+                <p class="profile-name" id="sidebarUserName">অ্যাডমিন</p>
+                <span class="profile-email" id="sidebarUserEmail">admin@madrasa.com</span>
+                <span class="profile-role"><i class="fas fa-circle"></i> সক্রিয়</span>
+            </div>
+        </div>
+
+        <!-- Navigation -->
+        <nav class="sidebar-nav">
+            <p class="nav-section-label">প্রধান মেনু</p>
+            <ul class="nav-list">
+                <li>
+                    <a href="#" class="nav-link active" data-section="dashboard" onclick="showSection('dashboard', this); return false;">
+                        <span class="nav-icon"><i class="fas fa-tachometer-alt"></i></span>
+                        <span class="nav-label">ড্যাশবোর্ড</span>
+                        <span class="nav-arrow"><i class="fas fa-chevron-right"></i></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="nav-link" data-section="students" onclick="showSection('students', this); return false;">
+                        <span class="nav-icon"><i class="fas fa-user-graduate"></i></span>
+                        <span class="nav-label">ছাত্রী ব্যবস্থাপনা</span>
+                        <span class="nav-badge" id="navStudentCount">০</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="nav-link" data-section="teachers" onclick="showSection('teachers', this); return false;">
+                        <span class="nav-icon"><i class="fas fa-chalkboard-teacher"></i></span>
+                        <span class="nav-label">শিক্ষক ব্যবস্থাপনা</span>
+                        <span class="nav-badge" id="navTeacherCount">০</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="nav-link" data-section="routine" onclick="showSection('routine', this); return false;">
+                        <span class="nav-icon"><i class="fas fa-calendar-alt"></i></span>
+                        <span class="nav-label">রুটিন ব্যবস্থাপনা</span>
+                        <span class="nav-arrow"><i class="fas fa-chevron-right"></i></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="nav-link" data-section="notices" onclick="showSection('notices', this); return false;">
+                        <span class="nav-icon"><i class="fas fa-bullhorn"></i></span>
+                        <span class="nav-label">নোটিশ বোর্ড</span>
+                        <span class="nav-arrow"><i class="fas fa-chevron-right"></i></span>
+                    </a>
+                </li>
+            </ul>
+
+            <p class="nav-section-label">অ্যাকাউন্ট</p>
+            <ul class="nav-list">
+                <li>
+                    <a href="#" class="nav-link nav-link-danger" onclick="logoutUser(); return false;">
+                        <span class="nav-icon"><i class="fas fa-sign-out-alt"></i></span>
+                        <span class="nav-label">লগআউট</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Sidebar Footer -->
+        <div class="sidebar-footer">
+            <p>সংস্করণ ১.০.০</p>
+        </div>
+    </aside>
+
+    <!-- Sidebar Overlay (Mobile) -->
+    <div id="sidebarOverlay" class="sidebar-overlay hidden" onclick="closeSidebar()"></div>
+
+    <!-- ===== MAIN CONTENT ===== -->
+    <div class="main-wrapper">
+
+        <!-- Top Bar -->
+        <header class="topbar">
+            <div class="topbar-left">
+                <button class="hamburger-btn" onclick="openSidebar()" aria-label="মেনু">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="page-breadcrumb">
+                    <span class="breadcrumb-home"><i class="fas fa-mosque"></i></span>
+                    <i class="fas fa-chevron-right breadcrumb-sep"></i>
+                    <span id="pageTitle" class="breadcrumb-current">ড্যাশবোর্ড</span>
+                </div>
+            </div>
+
+            <div class="topbar-right">
+                <!-- Global Search -->
+                <div class="topbar-search-wrap" id="searchWrap">
+                    <div class="topbar-search">
+                        <i class="fas fa-search search-icon"></i>
+                        <input
+                            type="text"
+                            id="globalSearch"
+                            placeholder="অনুসন্ধান..."
+                            oninput="globalSearchHandler(this.value)"
+                            autocomplete="off"
+                        >
+                        <button class="search-clear-btn hidden" id="searchClearBtn" onclick="clearGlobalSearch()">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Search Toggle (Mobile) -->
+                <button class="topbar-icon-btn" onclick="toggleTopbarSearch()" id="searchToggleBtn">
+                    <i class="fas fa-search"></i>
+                </button>
+
+                <!-- Notification Bell -->
+                <button class="topbar-icon-btn notif-btn" onclick="showSection('notices', null)">
+                    <i class="fas fa-bell"></i>
+                    <span class="notif-dot" id="notifDot"></span>
+                </button>
+
+                <!-- User Menu -->
+                <div class="topbar-user" id="topbarUser">
+                    <button class="user-menu-btn" onclick="toggleUserDropdown()">
+                        <div class="user-menu-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <span class="user-menu-name" id="topbarUserName">অ্যাডমিন</span>
+                        <i class="fas fa-chevron-down user-menu-arrow"></i>
+                    </button>
+
+                    <!-- Dropdown -->
+                    <div class="user-dropdown hidden" id="userDropdown">
+                        <div class="dropdown-header">
+                            <p id="dropdownName">অ্যাডমিন</p>
+                            <span id="dropdownEmail">admin@madrasa.com</span>
+                        </div>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item" onclick="logoutUser(); return false;">
+                            <i class="fas fa-sign-out-alt"></i> লগআউট
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Global Search Results -->
+        <div id="globalSearchResults" class="global-search-results hidden">
+            <div class="search-results-header">
+                <span id="searchResultsTitle">অনুসন্ধান ফলাফল</span>
+                <button onclick="clearGlobalSearch()"><i class="fas fa-times"></i></button>
+            </div>
+            <div id="searchResultsList" class="search-results-list"></div>
+        </div>
+
+        <!-- ===== CONTENT AREA ===== -->
+        <main class="content-area">
+
+            <!-- ======================================
+                 DASHBOARD SECTION
+            ====================================== -->
+            <section id="dashboardSection" class="section active">
+
+                <!-- Welcome Banner -->
+                <div class="welcome-banner">
+                    <div class="welcome-content">
+                        <div class="welcome-text">
+                            <h2>আস্সালামু আলাইকুম ওয়া রাহমাতুল্লাহ!</h2>
+                            <p id="welcomeMsg">মাদ্রাসা ম্যানেজমেন্ট সিস্টেমে স্বাগতম</p>
+                            <div class="welcome-date" id="welcomeDate"></div>
+                        </div>
+                        <div class="welcome-illustration">
+                            <i class="fas fa-mosque"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Stats Grid -->
+                <div class="stats-grid">
+                    <div class="stat-card stat-students" onclick="showSection('students', null)">
+                        <div class="stat-icon-wrap">
+                            <i class="fas fa-user-graduate"></i>
+                        </div>
+                        <div class="stat-body">
+                            <h3 id="totalStudents">০</h3>
+                            <p>মোট ছাত্রী</p>
+                        </div>
+                        <div class="stat-arrow"><i class="fas fa-arrow-right"></i></div>
+                    </div>
+
+                    <div class="stat-card stat-teachers" onclick="showSection('teachers', null)">
+                        <div class="stat-icon-wrap">
+                            <i class="fas fa-chalkboard-teacher"></i>
+                        </div>
+                        <div class="stat-body">
+                            <h3 id="totalTeachers">০</h3>
+                            <p>মোট শিক্ষক</p>
+                        </div>
+                        <div class="stat-arrow"><i class="fas fa-arrow-right"></i></div>
+                    </div>
+
+                    <div class="stat-card stat-classes" onclick="showSection('routine', null)">
+                        <div class="stat-icon-wrap">
+                            <i class="fas fa-book-open"></i>
+                        </div>
+                        <div class="stat-body">
+                            <h3 id="totalClasses">০</h3>
+                            <p>মোট শ্রেণি</p>
+                        </div>
+                        <div class="stat-arrow"><i class="fas fa-arrow-right"></i></div>
+                    </div>
+
+                    <div class="stat-card stat-notices" onclick="showSection('notices', null)">
+                        <div class="stat-icon-wrap">
+                            <i class="fas fa-bullhorn"></i>
+                        </div>
+                        <div class="stat-body">
+                            <h3 id="totalNotices">০</h3>
+                            <p>নোটিশ</p>
+                        </div>
+                        <div class="stat-arrow"><i class="fas fa-arrow-right"></i></div>
+                    </div>
+                </div>
+
+                <!-- Dashboard Cards Grid -->
+                <div class="dashboard-grid">
+
+                    <!-- Recent Students -->
+                    <div class="dashboard-card">
+                        <div class="card-header">
+                            <div class="card-title">
+                                <i class="fas fa-user-graduate"></i>
+                                <h3>সাম্প্রতিক ছাত্রী</h3>
+                            </div>
+                            <a href="#" class="card-view-all" onclick="showSection('students', null); return false;">সব দেখুন <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                        <div id="recentStudentsList" class="recent-list">
+                            <div class="empty-state-sm">
+                                <i class="fas fa-inbox"></i>
+                                <p>কোনো তথ্য নেই</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Recent Teachers -->
+                    <div class="dashboard-card">
+                        <div class="card-header">
+                            <div class="card-title">
+                                <i class="fas fa-chalkboard-teacher"></i>
+                                <h3>সাম্প্রতিক শিক্ষক</h3>
+                            </div>
+                            <a href="#" class="card-view-all" onclick="showSection('teachers', null); return false;">সব দেখুন <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                        <div id="recentTeachersList" class="recent-list">
+                            <div class="empty-state-sm">
+                                <i class="fas fa-inbox"></i>
+                                <p>কোনো তথ্য নেই</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Today's Routine -->
+                    <di
